@@ -8,6 +8,7 @@ export default {
     extend: {},
     colors: {
       transparent: 'transparent',
+      'white': '#ffffff',
       'prin-violet': '#6278F7',
       'prin-green': '#95FFD4',
       'prin-grey': '#F2F2F2',
