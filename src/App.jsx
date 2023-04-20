@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { Header } from './components/Header'
-import './App.css'
+import { Form } from './components/Form'
+import { MyOrg } from './components/MyOrg'
+
 
 function App() {
 
   return (
-    <main >
+    <main className='font-sans'>
       <Header/>
+      <Form/>
+      <MyOrg/>
     </main>
   )
 }

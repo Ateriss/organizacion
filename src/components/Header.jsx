@@ -8,7 +8,7 @@ function Header(){
             <section className='max-w-7xl  m-auto'>
                 <div className='w-full h-300 relative'>
                     <img src={bgHeader} alt="header background" className='w-full h-full' />
-                    <img src={headerImg} alt="people" className='absolute bottom-0 right-0 w-2/5' />
+                    <img src={headerImg} alt="people" className='absolute bottom-0 right-0 h-2/3' />
                     <div >
                         <div className='absolute top-10 left-28 flex items-center'>
                             <img src={logo} alt="logo" />
@@ -22,6 +22,6 @@ function Header(){
             </section>
         </header>
     )
-}
+};
 
 export { Header }
