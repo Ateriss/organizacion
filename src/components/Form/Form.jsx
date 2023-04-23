@@ -2,7 +2,7 @@ import { ListInput } from "./ListInput";
 import { NameInput } from "./NameInput";
 import { PicInput } from "./PicInput";
 import { Btn } from "./Btn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function Form(props){
@@ -49,7 +49,18 @@ function Form(props){
             equipo: equipoValue,
             foto: image,
         }
+        console.log(dataCart)
+        props.registerPartner(dataCart)
+            setEquipoValue('');
+            setImage('');
+            setNameValue('');
+            setPuesto1Value('');
+            setPuesto2Value('');
+        
     }
+console.log(manejarEnvío)
+  
+
 
     return(
         <section className="w-full ">
@@ -62,7 +73,7 @@ function Form(props){
                     <ListInput txt='Equipo' idList='Equipo'  options={equipos} obligado='true' listValue={equipoValue} onChange={changeEquipoValue} />
                 </div>
                 <PicInput  image={image} handlePicChange={handlePicChange} picTxt={picTxt} />
-                <Btn title='Crear'/>
+                <Btn title='Crear'  />
             </form>
         </section>
     )

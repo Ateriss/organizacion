@@ -3,10 +3,19 @@ import { Header } from './components/Header'
 import { Form } from './components/Form/Form'
 import { MyOrg } from './components/MyOrg'
 import { Equipo } from './components/Equipo/Equipo'
+import { Footer } from './components/Footer'
+import fotoAle from './assets/1670622700504.jpeg'
 
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [partners, setPartners]= useState([{
+    equipo: "Front End",
+    foto: fotoAle,
+    nombre: "Alexandra Linares Viña",
+    puesto1: "Dev. de Software",
+    puesto2: "",
+  }]);
 
   const teams = [
     {
@@ -48,24 +57,28 @@ function App() {
 
 const teamsName = teams.map((data)=>data.titulo)
 
-console.log(teamsName)
-
-
-
   const showElement = () => {
       setShowForm(!showForm)
   }
 
+  const registerPartner = (partner)=>{
+    console.log('new partner ', partners)
+    setPartners([...partners, partner ])
+
+  }
+
+
   return (
     <main className='font-sans flex items-center justify-center flex-col'>
       <Header/>
-      {showForm === true? <Form teams={teamsName} /> : ''}
+      {showForm === true? <Form teams={teamsName} registerPartner={registerPartner} /> : ''}
       <MyOrg showForm={showElement}/>
       {
         teams.map((team)=>{
-          return <Equipo key={team.titulo} nameTeam={team.titulo} color1={team.colorPrim} colorBg={team.colorSec} />
-        })
+          return <Equipo key={team.titulo} nameTeam={team.titulo} color1={team.colorPrim} colorBg={team.colorSec} partners={partners.filter(partners => partners.equipo === team.titulo)} />
+    })
       }
+      <Footer/>
     </main>
   )
 }
