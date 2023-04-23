@@ -5,14 +5,24 @@ import { Btn } from "./Btn";
 import { useState } from "react";
 
 
-function Form(){
+function Form(props){
     const puesto1 = ['Head de Alura', 'Dev. FullStack', 'Dev. de Software', 'Instructor/a en Alura'];
-    const equipos = ['Programación','Front End', 'Back End', 'Data Science','Devops', 'UX y Diseño', 'Movil', 'Innovación y Gestión' ];
+    const equipos = props.teams;
     const [nameValue, setNameValue] = useState('');
     const [puesto1Value, setPuesto1Value] = useState('');
     const [puesto2Value, setPuesto2Value] = useState('');
     const [equipoValue, setEquipoValue] = useState('');
-    const [picValue, setPicValue] = useState('');
+    const [image, setImage] = useState('');
+
+    const [picTxt, setPicTxt] = useState(false);
+
+    const handlePicChange = (e) => {
+        const file = e.target.files[0];
+        setPicTxt(true);
+        const imageUrl = URL.createObjectURL(file);
+        setImage(imageUrl);
+    };
+
 
     const changeNameValue = (e) => {
         setNameValue(e.target.value)
@@ -29,14 +39,7 @@ function Form(){
     const changeEquipoValue = (e) =>{
         setEquipoValue(e.target.value)
     }
-
    
-
-
-    function handlePicChange(event) {
-        return
-    }
-
     const manejarEnvío = (e) => {
         e.preventDefault()
         let dataCart = {
@@ -44,7 +47,7 @@ function Form(){
             puesto1: puesto1Value,
             puesto2: puesto2Value,
             equipo: equipoValue,
-            foto: picValue,
+            foto: image,
         }
     }
 
@@ -58,7 +61,7 @@ function Form(){
                     <ListInput txt='Puesto 2 (opcional)' idList='puesto2'  options={puesto1} obligado='false' listValue={puesto2Value} onChange={changePuesto2Value} />
                     <ListInput txt='Equipo' idList='Equipo'  options={equipos} obligado='true' listValue={equipoValue} onChange={changeEquipoValue} />
                 </div>
-                <PicInput onPicChange={handlePicChange} />
+                <PicInput  image={image} handlePicChange={handlePicChange} picTxt={picTxt} />
                 <Btn title='Crear'/>
             </form>
         </section>
